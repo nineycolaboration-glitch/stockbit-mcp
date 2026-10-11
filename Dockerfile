@@ -2,10 +2,11 @@ FROM node:22-alpine
 
 WORKDIR /app
 
-# Install stockbit-mcp dari NPM (versi official yang udah works)
-RUN npm install -g stockbit-mcp
+# Install stockbit-mcp dan supergateway
+RUN npm install -g stockbit-mcp supergateway
 
 EXPOSE 3000
 
-# Jalanin stockbit-mcp
-CMD ["stockbit-mcp"]
+# Jalanin stockbit-mcp, dibungkus supergateway
+# Supergateway ngubah stdio -> HTTP di port 3000
+CMD ["supergateway", "--stdio", "stockbit-mcp", "--port", "3000"]
