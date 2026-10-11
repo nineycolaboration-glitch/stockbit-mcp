@@ -2,15 +2,10 @@ FROM node:22-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
-COPY tsconfig*.json ./
-
-RUN npm ci
-
-COPY . .
-
-RUN npm run build || true
+# Install stockbit-mcp dari NPM (versi official yang udah works)
+RUN npm install -g stockbit-mcp
 
 EXPOSE 3000
 
-CMD ["node", "dist/bin/stockbit-mcp.js"]
+# Jalanin stockbit-mcp
+CMD ["stockbit-mcp"]
