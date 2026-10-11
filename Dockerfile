@@ -9,7 +9,6 @@ RUN npm ci
 
 COPY . .
 
-# Build, tapi abaikan error TypeScript
 RUN npm run build || true
 
 EXPOSE 3000
